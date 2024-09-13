@@ -36,6 +36,7 @@ async function createUserCtr(request, response) {
 async function loginUserCtr(request, response) {
   const data = request.body;
   const userFromDB = await getUserByUsername(data.username);
+  const user_id = userFromDB.data.user_Id;
   if (!userFromDB.data) {
     response.status(400).send({ msg: `invalid credentials` });
   } else {
@@ -56,7 +57,7 @@ async function loginUserCtr(request, response) {
       );
       console.log(token);
 
-      response.status(200).send({ msg: `login successful`, token });
+      response.status(200).send({ msg: `login successful`, token, user_id });
     } else {
       response.status(400).send({ msg: `invalid credentials` });
     }

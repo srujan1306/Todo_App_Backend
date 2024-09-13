@@ -3,6 +3,7 @@ import {
   gettasksetsCtr,
   createtasksetCtr,
   deletetasksetByIdCtr,
+  getusertasksCtr,
 } from "../controllers/todo.controller.js";
 const router = express.Router();
 
@@ -12,7 +13,8 @@ router.delete("/deletetaskset/:taskset_Id", deletetasksetByIdCtr);
 router.patch("/lists/:id", (req, res) => {
   res.send("Hello World !");
 });
-router.delete("/lists/:id", (req, res) => {
-  res.send("Hello World !");
-});
+
+//routes for logged in user
+router.get("/usertasks/:user_Id", getusertasksCtr);
+
 export default router;

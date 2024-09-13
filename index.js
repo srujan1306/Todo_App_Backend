@@ -14,5 +14,5 @@ app.use("/users", usersRouter);
 app.use("/todo", todoRouter);
 
 app.listen(PORT, () => {
-  console.log("Server is listening on port 3000");
+  console.log(`Server is listening on port ${PORT}`);
 });

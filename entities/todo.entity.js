@@ -17,31 +17,37 @@ const Tasksets = new Entity(
         type: "string",
         required: true,
       },
-      // user_Id: {
-      //   type: "string",
-      //   required: true,
-      // },
+      user_Id: {
+        type: "string",
+        required: true,
+      },
       tasklist: {
-        // New attribute added here
         type: "list",
         items: { type: "string" },
-        default: [], // Optional: set a default value
+        default: [],
       },
     },
     indexes: {
       primary: {
         pk: {
           field: "pk",
-          facets: ["taskset_Id"],
+          facets: ["taskset_Id"], // Primary key facet
         },
         sk: {
           field: "sk",
-          facets: [],
+          facets: [], // Sort key is empty for primary index
+        },
+      },
+      byUserIndex1: {
+        index: "byUserIndex1", // Specify the index name here
+        pk: {
+          field: "user_Id",
+          facets: ["user_Id"], // Partition key for secondary index
         },
       },
     },
   },
-  { client, table: "tasksets" }
+  { client, table: "task_sets" }
 );
 
 export { Tasksets };
